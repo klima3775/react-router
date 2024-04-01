@@ -7,18 +7,8 @@ function UserAlbum() {
 
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/albums?userId=${userId}`)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Щось з інтернетом");
-        }
-        return res.json();
-      })
-      .then((data) => {
-        setAlbums(data);
-      })
-      .catch((error) => {
-        console.error("Помилка в отниманні даних: ", error);
-      });
+      .then((response) => response.json())
+      .then((data) => setAlbums(data));
   }, [userId]);
 
   return (
@@ -32,5 +22,4 @@ function UserAlbum() {
     </div>
   );
 }
-
 export default UserAlbum;

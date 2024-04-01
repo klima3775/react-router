@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-const UserPhotos = () => {
+function UserPhotos() {
   const [photos, setPhotos] = useState([]);
   const { albumId } = useParams();
 
@@ -24,5 +24,5 @@ const UserPhotos = () => {
       </ul>
     </div>
   );
-};
+}
 export default UserPhotos;
