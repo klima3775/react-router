@@ -7,23 +7,30 @@ function UserAlbum() {
 
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/albums?userId=${userId}`)
-      .then((response) => response.json())
-      .then((data) => setAlbums(data));
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Щось з інтернетом");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setAlbums(data);
+      })
+      .catch((error) => {
+        console.error("Помилка в отниманні даних: ", error);
+      });
   }, [userId]);
+
   return (
     <div>
-      <h1>Albums</h1>
-      <ul>
-        {albums.map((album) => (
-          <li key={album.id}>
-            {album.title}
-            <Link>
-              <button>Photos</button>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {albums.map((album) => (
+        <div key={album.id}>
+          <h2>{album.title}</h2>
+          <Link to={`/photos/${album.id}`}>Photos</Link>
+        </div>
+      ))}
     </div>
   );
 }
+
 export default UserAlbum;
