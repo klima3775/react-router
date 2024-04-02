@@ -1,22 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { apiResponse } from "../../utils/apiResponse";
+
 function UserList() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/users`)
-      .then((response) => response.json())
-      .then((data) => setUsers(data));
+    apiResponse("https://jsonplaceholder.typicode.com/users", setUsers);
   }, []);
 
   return (
-    <div>
-      {users.map((user) => (
-        <div key={user.id}>
-          <h2>{user.name}</h2>
-          <Link to={`/albums/${user.id}`}>Album</Link>
-        </div>
-      ))}
+    <div className="wrapper">
+      <div className="users">
+        <h2>Список користувачів</h2>
+
+        <ul>
+          {users.map((user) => (
+            <li key={user.id}>
+              <h3>{user.name}</h3>
+              <Link to={`/users/${user.id}/albums`}>
+                <button>Альбоми користувача</button>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
