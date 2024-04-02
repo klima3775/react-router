@@ -1,24 +1,23 @@
-body{
+body {
   padding: 8px;
 }
-.users{
-  background-color: aquamarine;
+.users {
+  background-color: green;
   max-width: 33%;
   padding: 8px;
 }
-.albums{
-  background-color:coral;
+.albums {
+  background-color: green;
   max-width: 33%;
   padding: 8px;
 }
-.photos{
-  background-color:darkcyan;
+.photos {
+  background-color: green;
   padding: 8px;
+  max-width: 33%;
 }
-ul{
-  padding-left: 0px;
-}
-li{
+
+li {
   list-style-type: none;
   padding: 0;
   margin-bottom: 8px;
