@@ -2,7 +2,7 @@ export function apiResponse(url, valueShouldToUpdate) {
   fetch(url)
     .then((res) => {
       if (!res.ok) {
-        throw new Error("Щось з інтернетом");
+        throw new Error("Error fetching data");
       }
       return res.json();
     })
@@ -10,7 +10,6 @@ export function apiResponse(url, valueShouldToUpdate) {
       valueShouldToUpdate(data);
     })
     .catch((error) => {
-      console.error("Помилка в отниманні даних: ", error);
+      console.error("Error fetching data", error);
     });
 }
-
